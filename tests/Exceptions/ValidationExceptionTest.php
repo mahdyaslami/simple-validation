@@ -61,7 +61,7 @@ final class ValidationExceptionTest extends TestCase
 
     /**
      * @test
-     * @covers \Simplex\Validation\Exceptions\BigNumberException
+     * @covers \Simplex\Validation\Exceptions\KeyNotFoundException
      */
     public function key_not_found()
     {
