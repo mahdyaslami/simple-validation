@@ -3,7 +3,7 @@
 namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Exceptions\GreaterNumberNotAllowedException;
+use Simplex\Validation\Exceptions\LowerNumberAllowedException;
 use Simplex\Validation\LowerRule;
 
 final class LowerRuleTest extends TestCase
@@ -45,7 +45,7 @@ final class LowerRuleTest extends TestCase
         $catched = false;
         try {
             $rule->validate(11);
-        } catch (GreaterNumberNotAllowedException $e) {
+        } catch (LowerNumberAllowedException $e) {
             $catched = true;
         }
 

@@ -2,7 +2,7 @@
 
 namespace Simplex\Validation;
 
-use Simplex\Validation\Exceptions\GreaterNumberNotAllowedException;
+use Simplex\Validation\Exceptions\LowerNumberAllowedException;
 
 class LowerRule extends NumericRule
 {
@@ -18,7 +18,7 @@ class LowerRule extends NumericRule
         parent::validate($value);
 
         if ($value > $this->maximum) {
-            throw new GreaterNumberNotAllowedException($this->maximum);
+            throw new LowerNumberAllowedException($this->maximum);
         }
     }
 }

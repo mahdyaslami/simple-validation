@@ -2,7 +2,7 @@
 
 namespace Simplex\Validation\Exceptions;
 
-class GreaterNumberNotAllowedException extends ValidationException
+class LowerNumberAllowedException extends ValidationException
 {
     public function __construct($maximum, \Throwable $previous = null)
     {

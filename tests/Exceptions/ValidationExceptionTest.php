@@ -3,7 +3,7 @@
 namespace Tests\Validation\Exceptions;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Exceptions\GreaterNumberNotAllowedException;
+use Simplex\Validation\Exceptions\LowerNumberAllowedException;
 use Simplex\Validation\Exceptions\OnlyIntegerAllowedException;
 use Simplex\Validation\Exceptions\OnlyNumberAllowedException;
 use Simplex\Validation\Exceptions\ValidationException;
@@ -49,11 +49,11 @@ final class ValidationExceptionTest extends TestCase
 
     /**
      * @test
-     * @covers \Simplex\Validation\Exceptions\GreaterNumberNotAllowedException
+     * @covers \Simplex\Validation\Exceptions\LowerNumberAllowedException
      */
     public function greater_number_not_allowed()
     {
-        $exception = new GreaterNumberNotAllowedException(10);
+        $exception = new LowerNumberAllowedException(10);
 
         $this->assertEquals('Value must be lower than 10.', $exception->getMessage());
     }
