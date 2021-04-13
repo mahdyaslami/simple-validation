@@ -3,7 +3,7 @@
 namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Exceptions\OnlyIntegerAllowedException;
+use Simplex\Validation\Exceptions\NonIntegerException;
 use Simplex\Validation\IntegerRule;
 
 final class IntegerRuleTest extends TestCase
@@ -32,7 +32,7 @@ final class IntegerRuleTest extends TestCase
         $catched = false;
         try {
             $rule->validate('aslami');
-        } catch (OnlyIntegerAllowedException $e) {
+        } catch (NonIntegerException $e) {
             $catched = true;
         }
 

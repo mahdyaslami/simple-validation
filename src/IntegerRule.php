@@ -3,14 +3,14 @@
 namespace Simplex\Validation;
 
 use Simplex\Validation\Contracts\ValidatorInterface;
-use Simplex\Validation\Exceptions\OnlyIntegerAllowedException;
+use Simplex\Validation\Exceptions\NonIntegerException;
 
 class IntegerRule implements ValidatorInterface
 {
     public function validate($value)
     {
         if (!is_int($value)) {
-            throw new OnlyIntegerAllowedException();
+            throw new NonIntegerException();
         }
     }
 }

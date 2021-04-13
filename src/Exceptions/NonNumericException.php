@@ -2,7 +2,7 @@
 
 namespace Simplex\Validation\Exceptions;
 
-class OnlyNumberAllowedException extends ValidationException
+class NonNumericException extends ValidationException
 {
     public function __construct(\Throwable $previous = null)
     {

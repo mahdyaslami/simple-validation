@@ -3,7 +3,7 @@
 namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Exceptions\OnlyNumberAllowedException;
+use Simplex\Validation\Exceptions\NonNumericException;
 use Simplex\Validation\NumericRule;
 
 final class NumericRuleTest extends TestCase
@@ -19,7 +19,7 @@ final class NumericRuleTest extends TestCase
         $catched = false;
         try {
             $rule->validate('non-numeric');
-        } catch (OnlyNumberAllowedException $e) {
+        } catch (NonNumericException $e) {
             $catched = true;
         }
 
@@ -37,7 +37,7 @@ final class NumericRuleTest extends TestCase
         $catched = false;
         try {
             $rule->validate(10.5);
-        } catch (OnlyNumberAllowedException $e) {
+        } catch (NonNumericException $e) {
             $catched = true;
         }
 
@@ -55,7 +55,7 @@ final class NumericRuleTest extends TestCase
         $catched = false;
         try {
             $rule->validate(10);
-        } catch (OnlyNumberAllowedException $e) {
+        } catch (NonNumericException $e) {
             $catched = true;
         }
 

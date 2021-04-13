@@ -3,9 +3,9 @@
 namespace Tests\Validation\Exceptions;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Exceptions\LowerNumberAllowedException;
-use Simplex\Validation\Exceptions\OnlyIntegerAllowedException;
-use Simplex\Validation\Exceptions\OnlyNumberAllowedException;
+use Simplex\Validation\Exceptions\BigNumberException;
+use Simplex\Validation\Exceptions\NonIntegerException;
+use Simplex\Validation\Exceptions\NonNumericException;
 use Simplex\Validation\Exceptions\ValidationException;
 
 final class ValidationExceptionTest extends TestCase
@@ -27,33 +27,33 @@ final class ValidationExceptionTest extends TestCase
 
     /**
      * @test
-     * @covers \Simplex\Validation\Exceptions\OnlyNumberAllowedException
+     * @covers \Simplex\Validation\Exceptions\NonNumericException
      */
     public function only_number_allowed()
     {
-        $exception = new OnlyNumberAllowedException();
+        $exception = new NonNumericException();
 
         $this->assertEquals('Value must be number.', $exception->getMessage());
     }
 
     /**
      * @test
-     * @covers \Simplex\Validation\Exceptions\OnlyIntegerAllowedException
+     * @covers \Simplex\Validation\Exceptions\NonIntegerException
      */
     public function only_integer_allowed()
     {
-        $exception = new OnlyIntegerAllowedException();
+        $exception = new NonIntegerException();
 
         $this->assertEquals('Value must be integer.', $exception->getMessage());
     }
 
     /**
      * @test
-     * @covers \Simplex\Validation\Exceptions\LowerNumberAllowedException
+     * @covers \Simplex\Validation\Exceptions\BigNumberException
      */
     public function greater_number_not_allowed()
     {
-        $exception = new LowerNumberAllowedException(10);
+        $exception = new BigNumberException(10);
 
         $this->assertEquals('Value must be lower than 10.', $exception->getMessage());
     }

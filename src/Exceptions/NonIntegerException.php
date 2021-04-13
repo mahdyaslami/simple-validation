@@ -2,7 +2,7 @@
 
 namespace Simplex\Validation\Exceptions;
 
-class OnlyIntegerAllowedException extends ValidationException
+class NonIntegerException extends ValidationException
 {
     public function __construct(\Throwable $previous = null)
     {
