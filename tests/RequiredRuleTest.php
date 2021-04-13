@@ -3,6 +3,7 @@
 namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
+use Simplex\Validation\Exceptions\KeyNotFoundException;
 use Simplex\Validation\RequiredRule;
 use stdClass;
 
@@ -16,11 +17,14 @@ final class RequiredRuleTest extends TestCase
     {
         $rule = new RequiredRule('id');
 
+        $catched = false;
         try {
             $rule->validate([]);
-        } catch (\Throwable $e) {
-            $this->assertEquals('id does not exists.', $e->getMessage());
+        } catch (KeyNotFoundException $e) {
+            $catched = true;
         }
+
+        $this->assertTrue($catched, 'Does not throw exception when key does not exists.');
     }
 
     /**
