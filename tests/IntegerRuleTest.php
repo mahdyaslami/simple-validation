@@ -1,0 +1,41 @@
+<?php
+
+namespace Tests\Validation;
+
+use PHPUnit\Framework\TestCase;
+use Simplex\Validation\Exceptions\OnlyIntegerAllowedException;
+use Simplex\Validation\IntegerRule;
+
+final class IntegerRuleTest extends TestCase
+{
+    /**
+     * @test
+     * @covers \Simplex\Validation\IntegerRule
+     */
+    public function validate_int_return_do_not_throw_any_exception()
+    {
+        $rule = new IntegerRule();
+
+        $rule->validate(10);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\IntegerRule
+     */
+    public function validate_non_int_throw_exception_with_message()
+    {
+        $rule = new IntegerRule();
+
+        $catched = false;
+        try {
+            $rule->validate('aslami');
+        } catch (OnlyIntegerAllowedException $e) {
+            $catched = true;
+        }
+
+        $this->assertTrue($catched, 'Exception does not thrown for non int value.');
+    }
+}
