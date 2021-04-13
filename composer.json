@@ -1,0 +1,36 @@
+{
+    "name": "mahdyaslami/validation",
+    "description": "Simple validation with decorator pattern.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahdi Aslami",
+            "email": "mahdyaslami@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Simplex\\Validation\\": "src/",
+            "Tests\\Validation\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --colors=always",
+        "coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "./vendor/bin/phpunit --colors=always --coverage-html ./.phpunit.cache/coverage-report"
+        ]
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
