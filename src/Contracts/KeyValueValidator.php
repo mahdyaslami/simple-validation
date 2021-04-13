@@ -15,14 +15,14 @@ abstract class KeyValueValidator extends CompositeValidator
         $this->addMany($rules);
     }
 
-    protected function keyExists($value)
+    protected function hasKey($value)
     {
         return is_object($value) ?
             property_exists($value, $this->key)
             : array_key_exists($this->key, $value);
     }
 
-    protected function getValueOfKey($value)
+    protected function getKey($value)
     {
         return is_object($value) ?
             $value->{$this->key}

@@ -8,10 +8,10 @@ class RequiredRule extends KeyValueValidator
 {
     public function validate($value)
     {
-        if (!$this->keyExists($value)) {
+        if (!$this->hasKey($value)) {
             throw new \Exception("{$this->key} does not exists.");
         }
 
-        $this->validateChildren($this->getValueOfKey($value));
+        $this->validateChildren($this->getKey($value));
     }
 }

@@ -8,8 +8,8 @@ class SometimesRule extends KeyValueValidator
 {
     public function validate($value)
     {
-        if ($this->keyExists($value)) {
-            $this->validateChildren($this->getValueOfKey($value));
+        if ($this->hasKey($value)) {
+            $this->validateChildren($this->getKey($value));
         }
     }
 }
