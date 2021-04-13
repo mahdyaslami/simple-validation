@@ -6,6 +6,6 @@ class NonIntegerException extends ValidationException
 {
     public function __construct(\Throwable $previous = null)
     {
-        parent::__construct('Value must be integer.', $previous);
+        parent::__construct('Value isn\'t integer.', $previous);
     }
 }

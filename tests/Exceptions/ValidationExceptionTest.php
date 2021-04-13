@@ -33,7 +33,7 @@ final class ValidationExceptionTest extends TestCase
     {
         $exception = new NonNumericException();
 
-        $this->assertEquals('Value must be number.', $exception->getMessage());
+        $this->assertEquals('Value isn\'t numeric.', $exception->getMessage());
     }
 
     /**
@@ -44,7 +44,7 @@ final class ValidationExceptionTest extends TestCase
     {
         $exception = new NonIntegerException();
 
-        $this->assertEquals('Value must be integer.', $exception->getMessage());
+        $this->assertEquals('Value isn\'t integer.', $exception->getMessage());
     }
 
     /**
@@ -55,6 +55,6 @@ final class ValidationExceptionTest extends TestCase
     {
         $exception = new BigNumberException(10);
 
-        $this->assertEquals('Value must be lower than 10.', $exception->getMessage());
+        $this->assertEquals('Value should be lower than 10.', $exception->getMessage());
     }
 }
