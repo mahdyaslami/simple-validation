@@ -2,10 +2,10 @@
 
 namespace Tests\Validation;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Contracts\CompositeValidator;
-use Simplex\Validation\Contracts\ValidatorInterface;
+use Tests\Validation\Helpers\EmtpyRule;
+use Tests\Validation\Helpers\ErrorRule;
+use Tests\Validation\Helpers\TestCompositeRule;
 
 final class CompositeValidatorTest extends TestCase
 {
@@ -63,34 +63,5 @@ final class CompositeValidatorTest extends TestCase
         }
 
         $this->assertFalse($catched, 'error in runnig all children.');
-    }
-}
-
-class TestCompositeRule extends CompositeValidator
-{
-    public function __construct($rules)
-    {
-        $this->addMany($rules);
-    }
-
-    public function validate($value)
-    {
-        $this->validateChildren($value);
-    }
-}
-
-class EmtpyRule  implements ValidatorInterface
-{
-    public function validate($value)
-    {
-        //
-    }
-}
-
-class ErrorRule  implements ValidatorInterface
-{
-    public function validate($value)
-    {
-        throw new Exception('Error.');
     }
 }

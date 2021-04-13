@@ -3,8 +3,10 @@
 namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
-use Simplex\Validation\Contracts\KeyValueValidator;
 use stdClass;
+use Tests\Validation\Helpers\EmtpyRule;
+use Tests\Validation\Helpers\ErrorRule;
+use Tests\Validation\Helpers\TestKeyValueRule;
 
 final class KeyValueValidatorTest extends TestCase
 {
@@ -120,23 +122,5 @@ final class KeyValueValidatorTest extends TestCase
         ];
 
         $this->assertEquals('value', $rule->getKey($array), 'Value is incorrect in associative array.');
-    }
-}
-
-class TestKeyValueRule extends KeyValueValidator
-{
-    public function validate($value)
-    {
-        $this->validateChildren($value);
-    }
-
-    public function hasKey($value)
-    {
-        return parent::hasKey($value);
-    }
-
-    public function getKey($value)
-    {
-        return parent::getKey($value);
     }
 }
