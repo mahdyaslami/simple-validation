@@ -4,6 +4,7 @@ namespace Tests\Validation\Exceptions;
 
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\Exceptions\BigNumberException;
+use Simplex\Validation\Exceptions\KeyNotFoundException;
 use Simplex\Validation\Exceptions\NonIntegerException;
 use Simplex\Validation\Exceptions\NonNumericException;
 use Simplex\Validation\Exceptions\ValidationException;
@@ -29,7 +30,7 @@ final class ValidationExceptionTest extends TestCase
      * @test
      * @covers \Simplex\Validation\Exceptions\NonNumericException
      */
-    public function only_number_allowed()
+    public function non_numeric()
     {
         $exception = new NonNumericException();
 
@@ -40,7 +41,7 @@ final class ValidationExceptionTest extends TestCase
      * @test
      * @covers \Simplex\Validation\Exceptions\NonIntegerException
      */
-    public function only_integer_allowed()
+    public function non_integer()
     {
         $exception = new NonIntegerException();
 
@@ -51,10 +52,21 @@ final class ValidationExceptionTest extends TestCase
      * @test
      * @covers \Simplex\Validation\Exceptions\BigNumberException
      */
-    public function greater_number_not_allowed()
+    public function big_number()
     {
         $exception = new BigNumberException(10);
 
         $this->assertEquals('Value should be lower than 10.', $exception->getMessage());
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\Exceptions\BigNumberException
+     */
+    public function key_not_found()
+    {
+        $exception = new KeyNotFoundException('id');
+
+        $this->assertEquals('id not found.', $exception->getMessage());
     }
 }
