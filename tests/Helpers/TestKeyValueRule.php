@@ -6,8 +6,12 @@ use Simplex\Validation\Contracts\KeyValueValidator;
 
 class TestKeyValueRule extends KeyValueValidator
 {
+    protected $value;
+
     public function validate($value)
     {
+        $this->value = $value;
+
         $this->validateChildren($value);
     }
 
@@ -19,5 +23,10 @@ class TestKeyValueRule extends KeyValueValidator
     public function getKey($value)
     {
         return parent::getKey($value);
+    }
+
+    public function getLastValue()
+    {
+        return $this->value;
     }
 }
