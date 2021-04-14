@@ -1,6 +1,6 @@
 {
-    "name": "mahdyaslami/validation",
-    "description": "Simple validation with decorator pattern.",
+    "name": "mahdyaslami/simple-validation",
+    "description": "Simple validation with composite pattern.",
     "type": "library",
     "license": "MIT",
     "authors": [

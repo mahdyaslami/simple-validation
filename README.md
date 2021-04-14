@@ -1,3 +1,3 @@
 # validation
 
-Implement validation with decorator pattern.
+Implement validation with composite pattern.
