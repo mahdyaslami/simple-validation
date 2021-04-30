@@ -2,6 +2,8 @@
 
 namespace Simplex\Validation;
 
+use Simplex\Validation\Contracts\ValidatorInterface;
+
 /**
  * Get validator for array with rule or rules
  * 
@@ -28,6 +30,24 @@ function arrayOf($rule = [])
 function objectWith(array $rules = [])
 {
     return new ObjectRule($rules);
+}
+
+/**
+ * Get validator for required key with rule or rules.
+ *
+ * @param string $key
+ * @param array|ValidatorInterface $rules
+ * @return RequiredRule
+ */
+function required(string $key, $rule = [])
+{
+    if (is_array($rule)) {
+        $validator = new RequiredRule($key, $rule);
+    } else {
+        $validator = new RequiredRule($key, [$rule]);
+    }
+
+    return $validator;
 }
 
 /**
