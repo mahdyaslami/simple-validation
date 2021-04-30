@@ -17,7 +17,7 @@ class LowerRule extends NumericRule
     {
         parent::validate($value);
 
-        if ($value > $this->maximum) {
+        if ($value >= $this->maximum) {
             throw new BigNumberException($this->maximum);
         }
     }
