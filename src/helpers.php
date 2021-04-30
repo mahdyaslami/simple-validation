@@ -3,7 +3,7 @@
 namespace Simplex\Validation;
 
 /**
- * Validate an array with rule or rules
+ * Get validator for array with rule or rules
  * 
  * @param array|ValidatorInterface $rule
  * @return ArrayRule
@@ -17,4 +17,14 @@ function arrayOf($rule)
     }
 
     return $validator;
+}
+
+/**
+ * Get validator for integer.
+ * 
+ * @return IntegerRule
+ */
+function integer()
+{
+    return new IntegerRule;
 }
