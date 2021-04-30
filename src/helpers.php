@@ -27,7 +27,7 @@ function arrayOf($rule = [])
  * @param array $rules
  * @return ObjectRule
  */
-function objectWith(array $rules = [])
+function objectOf(array $rules = [])
 {
     return new ObjectRule($rules);
 }

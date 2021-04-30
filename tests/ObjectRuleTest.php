@@ -4,7 +4,7 @@ namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\ObjectRule;
-use function Simplex\Validation\objectWith;
+use function Simplex\Validation\objectOf;
 use Tests\Validation\Helpers\TestKeyValueRule;
 
 final class ObjectRuleTest extends TestCase
@@ -31,12 +31,12 @@ final class ObjectRuleTest extends TestCase
 
     /**
      * @test
-     * @covers \Simplex\Validation\objectWith
+     * @covers \Simplex\Validation\objectOf
      */
     public function helper_get_object_rule()
     {
         $keyRule = new TestKeyValueRule('id');
-        $rule = objectWith([
+        $rule = objectOf([
             $keyRule
         ]);
 
@@ -53,11 +53,11 @@ final class ObjectRuleTest extends TestCase
 
     /**
      * @test
-     * @covers \Simplex\Validation\objectWith
+     * @covers \Simplex\Validation\objectOf
      */
     public function helper_has_default_value()
     {
-        $rule = objectWith();
+        $rule = objectOf();
 
         $object = [
             'id' => 4
