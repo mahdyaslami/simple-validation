@@ -30,6 +30,16 @@ function integer()
 }
 
 /**
+ * Get validator for numeric.
+ * 
+ * @return NumericRule
+ */
+function numeric()
+{
+    return new NumericRule;
+}
+
+/**
  * Get validator that check number should be lower than max.
  * 
  * @param float $max
