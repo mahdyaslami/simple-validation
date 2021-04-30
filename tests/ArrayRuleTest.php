@@ -36,7 +36,16 @@ final class ArrayRuleTest extends TestCase
      * @test
      * @covers \Simplex\Validation\arrayOf
      */
-    public function helper_work_correct()
+    public function helper_get_array_rule()
+    {
+        $this->assertInstanceOf(ArrayRule::class, arrayOf([]));
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\arrayOf
+     */
+    public function helper_work_with_array_of_rule()
     {
         $keyRule = Mockery::mock(KeyValueValidator::class);
         $keyRule->shouldReceive('validate')->with(1)->times(3);
