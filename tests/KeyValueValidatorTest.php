@@ -54,7 +54,7 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function all_children_rule_of_array()
     {
-        $rule = new TestKeyValueRule([new EmtpyRule(), new EmtpyRule()]);
+        $rule = new TestKeyValueRule('id', [new EmtpyRule(), new EmtpyRule()]);
 
         $catched = false;
         try {

@@ -15,7 +15,7 @@ class TestKeyValueRule extends KeyValueValidator
         $this->validateChildren($value);
     }
 
-    public function hasKey($value)
+    public function hasKey($value): bool
     {
         return parent::hasKey($value);
     }
