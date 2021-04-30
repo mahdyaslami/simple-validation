@@ -8,7 +8,7 @@ namespace Simplex\Validation;
  * @param array|ValidatorInterface $rule
  * @return ArrayRule
  */
-function arrayOf($rule)
+function arrayOf($rule = [])
 {
     if (is_array($rule)) {
         $validator = new ArrayRule($rule);

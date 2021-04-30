@@ -82,4 +82,21 @@ final class ArrayRuleTest extends TestCase
 
         $this->assertTrue(true);
     }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\arrayOf
+     */
+    public function helper_has_default_value()
+    {
+        $rule = arrayOf();
+
+        $array = [
+            1, 1, 1
+        ];
+
+        $rule->validate($array);
+
+        $this->assertTrue(true);
+    }
 }
