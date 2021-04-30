@@ -15,7 +15,10 @@
         "psr-4": {
             "Simplex\\Validation\\": "src/",
             "Tests\\Validation\\": "tests/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --colors=always",
@@ -32,5 +35,6 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    }
+    },
+    "prefer-stable": true
 }

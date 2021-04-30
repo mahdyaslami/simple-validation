@@ -5,6 +5,7 @@ namespace Tests\Validation;
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\Exceptions\BigNumberException;
 use Simplex\Validation\LowerRule;
+use function Simplex\Validation\lowerThan;
 
 final class LowerRuleTest extends TestCase
 {
@@ -68,5 +69,18 @@ final class LowerRuleTest extends TestCase
         }
 
         $this->assertTrue($catched, 'None number value not allowed.');
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\lowerThan
+     */
+    public function helper_get_lower_than_rule()
+    {
+        $rule = lowerThan(10);
+
+        $rule->validate(5);
+
+        $this->assertInstanceOf(LowerRule::class, $rule);
     }
 }

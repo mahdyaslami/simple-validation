@@ -5,6 +5,7 @@ namespace Tests\Validation;
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\Exceptions\NonIntegerException;
 use Simplex\Validation\IntegerRule;
+use function Simplex\Validation\integer;
 
 final class IntegerRuleTest extends TestCase
 {
@@ -37,5 +38,14 @@ final class IntegerRuleTest extends TestCase
         }
 
         $this->assertTrue($catched, 'Exception does not thrown for non int value.');
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\integer
+     */
+    public function helper_get_integer_rule()
+    {
+        $this->assertInstanceOf(IntegerRule::class, integer());
     }
 }
