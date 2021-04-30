@@ -72,9 +72,7 @@ final class ArrayRuleTest extends TestCase
         $keyRule = Mockery::mock(KeyValueValidator::class);
         $keyRule->shouldReceive('validate')->with(1)->times(3);
 
-        $rule = arrayOf([
-            $keyRule
-        ]);
+        $rule = arrayOf($keyRule);
 
         $array = [
             1, 1, 1
