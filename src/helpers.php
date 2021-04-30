@@ -20,6 +20,17 @@ function arrayOf($rule)
 }
 
 /**
+ * Get validator for object with rules
+ *
+ * @param array $rules
+ * @return ObjectRule
+ */
+function objectWith(array $rules = [])
+{
+    return new ObjectRule($rules);
+}
+
+/**
  * Get validator for integer.
  * 
  * @return IntegerRule

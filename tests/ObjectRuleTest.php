@@ -4,6 +4,7 @@ namespace Tests\Validation;
 
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\ObjectRule;
+use function Simplex\Validation\objectWith;
 use Tests\Validation\Helpers\TestKeyValueRule;
 
 final class ObjectRuleTest extends TestCase
@@ -26,5 +27,44 @@ final class ObjectRuleTest extends TestCase
         $rule->validate($object);
 
         $this->assertEquals($object, $keyRule->getLastValue());
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\objectWith
+     */
+    public function helper_get_object_rule()
+    {
+        $keyRule = new TestKeyValueRule('id');
+        $rule = objectWith([
+            $keyRule
+        ]);
+
+        $this->assertInstanceOf(ObjectRule::class, $rule);
+
+        $object = [
+            'id' => 4
+        ];
+
+        $rule->validate($object);
+
+        $this->assertEquals($object, $keyRule->getLastValue());
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\objectWith
+     */
+    public function helper_has_default_value()
+    {
+        $rule = objectWith();
+
+        $object = [
+            'id' => 4
+        ];
+
+        $rule->validate($object);
+
+        $this->assertTrue(true);
     }
 }
