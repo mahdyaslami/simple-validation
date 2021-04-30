@@ -28,3 +28,14 @@ function integer()
 {
     return new IntegerRule;
 }
+
+/**
+ * Get validator that check number should be lower than max.
+ * 
+ * @param float $max
+ * @return LowerRule
+ */
+function lowerThan($max)
+{
+    return new LowerRule($max);
+}
