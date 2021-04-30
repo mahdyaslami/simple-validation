@@ -42,3 +42,17 @@ Extend a contract and implement `validate` method.
 if you extend `CompositeValidator` or you should call `validateChildren` method in `validate` method too.
 
 you can override `validateChildren` too.
+
+## Validators
+
+```
+arrayOf, objectOf, 
+```
+
+```
+required, sometimes, 
+```
+
+```
+integer, numeric, lowerThan
+```
