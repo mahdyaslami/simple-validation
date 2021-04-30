@@ -26,13 +26,18 @@ final class LowerRuleTest extends TestCase
      * @test
      * @covers \Simplex\Validation\LowerRule
      */
-    public function does_not_throw_exception_when_value_is_equal_to_maximum()
+    public function throw_exception_when_value_is_equal_to_maximum()
     {
         $rule = new LowerRule(10);
 
-        $rule->validate(10);
+        $catched = false;
+        try {
+            $rule->validate(10);
+        } catch (BigNumberException $e) {
+            $catched = true;
+        }
 
-        $this->assertTrue(true);
+        $this->assertTrue($catched, 'Equal value with maximum not allowed.');
     }
 
     /**
