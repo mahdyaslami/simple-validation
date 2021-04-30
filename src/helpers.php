@@ -51,6 +51,24 @@ function required(string $key, $rule = [])
 }
 
 /**
+ * Get validator for sometimes key with rule or rules.
+ *
+ * @param string $key
+ * @param array|ValidatorInterface $rules
+ * @return SometimesRule
+ */
+function sometimes(string $key, $rule = [])
+{
+    if (is_array($rule)) {
+        $validator = new SometimesRule($key, $rule);
+    } else {
+        $validator = new SometimesRule($key, [$rule]);
+    }
+
+    return $validator;
+}
+
+/**
  * Get validator for integer.
  * 
  * @return IntegerRule
