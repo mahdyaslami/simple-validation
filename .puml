@@ -1,0 +1,39 @@
+@startuml
+skinparam linetype ortho
+interface ValidatorInterface
+ValidatorInterface : validate($value)
+
+abstract class CompositeValidator {
+  -ValidatorInterface $children = []
+  +void addMany(array $children)
+  +void add(ValidatorInterface $child)
+  #void validateChildren($value)
+}
+ValidatorInterface <|.. CompositeValidator
+CompositeValidator *--> ValidatorInterface
+
+abstract class KeyValueValidator {
+  +__construct(string $key, array $rules = [])
+  #bool hasKey($value)
+  #mixed getKey($value)
+}
+CompositeValidator <|-- KeyValueValidator
+
+class IntegerRule
+ValidatorInterface <|.. IntegerRule
+
+class LowerRule
+ValidatorInterface <|.. LowerRule
+
+class ArrayRule
+CompositeValidator <|-- ArrayRule
+
+class ObjectRule
+CompositeValidator <|-- ObjectRule
+
+class RequiredRule
+KeyValueValidator <|-- RequiredRule
+
+class SometimesRule
+KeyValueValidator <|-- SometimesRule
+@enduml
