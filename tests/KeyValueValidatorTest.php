@@ -2,10 +2,8 @@
 
 namespace Tests\Validation;
 
-use PHPUnit\Framework\TestCase;
+use Simplex\Validation\Exceptions\ValidationException;
 use stdClass;
-use Tests\Validation\Helpers\EmtpyRule;
-use Tests\Validation\Helpers\ErrorRule;
 use Tests\Validation\Helpers\TestKeyValueRule;
 
 final class KeyValueValidatorTest extends TestCase
@@ -16,13 +14,12 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function check_first_child_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [new ErrorRule(), new EmtpyRule()]);
+        $rule = new TestKeyValueRule('id', [$this->throwExpRule(), $this->rawMockedRule()]);
 
         $catched = false;
         try {
             $rule->validate(0);
-        } catch (\Exception $e) {
-            $this->assertEquals('Error.', $e->getMessage());
+        } catch (ValidationException $e) {
             $catched = true;
         }
 
@@ -35,13 +32,12 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function check_second_child_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [new EmtpyRule(), new ErrorRule()]);
+        $rule = new TestKeyValueRule('id', [$this->receiveValidateRule(), $this->throwExpRule()]);
 
         $catched = false;
         try {
             $rule->validate(0);
-        } catch (\Exception $e) {
-            $this->assertEquals('Error.', $e->getMessage());
+        } catch (ValidationException $e) {
             $catched = true;
         }
 
@@ -54,7 +50,7 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function all_children_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [new EmtpyRule(), new EmtpyRule()]);
+        $rule = new TestKeyValueRule('id', [$this->receiveValidateRule(), $this->receiveValidateRule()]);
 
         $catched = false;
         try {
