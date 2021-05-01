@@ -14,7 +14,7 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function check_first_child_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [$this->errorRule(), $this->emptyRule()]);
+        $rule = new TestKeyValueRule('id', [$this->errorRule(), $this->blankRuleWithoutCheckingReceiveValidate()]);
 
         $catched = false;
         try {
@@ -32,7 +32,7 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function check_second_child_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [$this->emptyRuleWithOnceValidateCall(), $this->errorRule()]);
+        $rule = new TestKeyValueRule('id', [$this->blankRuleThatCheckValidate(), $this->errorRule()]);
 
         $catched = false;
         try {
@@ -50,7 +50,7 @@ final class KeyValueValidatorTest extends TestCase
      */
     public function all_children_rule_of_array()
     {
-        $rule = new TestKeyValueRule('id', [$this->emptyRuleWithOnceValidateCall(), $this->emptyRuleWithOnceValidateCall()]);
+        $rule = new TestKeyValueRule('id', [$this->blankRuleThatCheckValidate(), $this->blankRuleThatCheckValidate()]);
 
         $catched = false;
         try {

@@ -9,14 +9,14 @@ use Simplex\Validation\Exceptions\ValidationException;
 
 class TestCase extends FrameworkTastCase
 {
-    public function emptyRule()
+    public function blankRuleWithoutCheckingReceiveValidate()
     {
         $rule = Mockery::mock(ValidatorInterface::class);
 
         return $rule;
     }
 
-    public function emptyRuleWithOnceValidateCall()
+    public function blankRuleThatCheckValidate()
     {
         $rule = Mockery::mock(ValidatorInterface::class);
         $rule->shouldReceive('validate')->once();

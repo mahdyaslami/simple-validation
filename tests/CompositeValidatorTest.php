@@ -13,7 +13,7 @@ final class CompositeValidatorTest extends TestCase
      */
     public function check_first_child_rule_of_array()
     {
-        $rule = new TestCompositeRule([$this->errorRule(), $this->emptyRule()]);
+        $rule = new TestCompositeRule([$this->errorRule(), $this->blankRuleWithoutCheckingReceiveValidate()]);
 
         $catched = false;
         try {
@@ -31,7 +31,7 @@ final class CompositeValidatorTest extends TestCase
      */
     public function check_second_child_rule_of_array()
     {
-        $rule = new TestCompositeRule([$this->emptyRuleWithOnceValidateCall(), $this->errorRule()]);
+        $rule = new TestCompositeRule([$this->blankRuleThatCheckValidate(), $this->errorRule()]);
 
         $catched = false;
         try {
@@ -49,7 +49,7 @@ final class CompositeValidatorTest extends TestCase
      */
     public function all_children_rule_of_array()
     {
-        $rule = new TestCompositeRule([$this->emptyRuleWithOnceValidateCall(), $this->emptyRuleWithOnceValidateCall()]);
+        $rule = new TestCompositeRule([$this->blankRuleThatCheckValidate(), $this->blankRuleThatCheckValidate()]);
 
         $catched = false;
         try {
