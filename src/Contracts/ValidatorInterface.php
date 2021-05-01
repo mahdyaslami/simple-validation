@@ -9,6 +9,7 @@ interface ValidatorInterface
      * the value is invalid.
      * 
      * @param mixed $value
+     * @return void
      */
     public function validate($value);
 }

@@ -2,8 +2,11 @@
 
 namespace Tests\Validation;
 
+use Mockery;
 use PHPUnit\Framework\TestCase;
+use Simplex\Validation\Contracts\ValidatorInterface;
 use Simplex\Validation\SometimesRule;
+use function Simplex\Validation\sometimes;
 use stdClass;
 
 final class SometimesRuleTest extends TestCase
@@ -53,6 +56,65 @@ final class SometimesRuleTest extends TestCase
         $object->id = 1;
 
         $rule->validate($object);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\sometimes
+     */
+    public function helper_get_sometimes_rule()
+    {
+        $rule = sometimes('id');
+
+        $this->assertInstanceOf(SometimesRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\sometimes
+     */
+    public function helper_get_more_rules()
+    {
+        $mock = Mockery::mock(ValidatorInterface::class);
+        $mock->shouldReceive('validate')->once();
+        $rule = sometimes('id', [$mock]);
+
+        $this->assertInstanceOf(SometimesRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        Mockery::close();
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\sometimes
+     */
+    public function helper_work_with_one_rule()
+    {
+        $mock = Mockery::mock(ValidatorInterface::class);
+        $mock->shouldReceive('validate')->once();
+        $rule = sometimes('id', $mock);
+
+        $this->assertInstanceOf(SometimesRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        Mockery::close();
 
         $this->assertTrue(true);
     }

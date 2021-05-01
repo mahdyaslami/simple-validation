@@ -3,6 +3,7 @@
 namespace Simplex\Validation;
 
 use Simplex\Validation\Contracts\CompositeValidator;
+use Simplex\Validation\Contracts\ValidatorInterface;
 
 class ArrayRule extends CompositeValidator
 {

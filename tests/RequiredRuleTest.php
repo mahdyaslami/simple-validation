@@ -2,9 +2,12 @@
 
 namespace Tests\Validation;
 
+use Mockery;
 use PHPUnit\Framework\TestCase;
+use Simplex\Validation\Contracts\ValidatorInterface;
 use Simplex\Validation\Exceptions\KeyNotFoundException;
 use Simplex\Validation\RequiredRule;
+use function Simplex\Validation\required;
 use stdClass;
 
 final class RequiredRuleTest extends TestCase
@@ -54,6 +57,65 @@ final class RequiredRuleTest extends TestCase
         $object->id = 1;
 
         $rule->validate($object);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\required
+     */
+    public function helper_get_required_rule()
+    {
+        $rule = required('id');
+
+        $this->assertInstanceOf(RequiredRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\required
+     */
+    public function helper_get_more_rules()
+    {
+        $mock = Mockery::mock(ValidatorInterface::class);
+        $mock->shouldReceive('validate')->once();
+        $rule = required('id', [$mock]);
+
+        $this->assertInstanceOf(RequiredRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        Mockery::close();
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\required
+     */
+    public function helper_work_with_one_rule()
+    {
+        $mock = Mockery::mock(ValidatorInterface::class);
+        $mock->shouldReceive('validate')->once();
+        $rule = required('id', $mock);
+
+        $this->assertInstanceOf(RequiredRule::class, $rule);
+
+        $rule->validate([
+            'id' => 1
+        ]);
+
+        Mockery::close();
 
         $this->assertTrue(true);
     }

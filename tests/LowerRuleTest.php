@@ -5,6 +5,7 @@ namespace Tests\Validation;
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\Exceptions\BigNumberException;
 use Simplex\Validation\LowerRule;
+use function Simplex\Validation\lowerThan;
 
 final class LowerRuleTest extends TestCase
 {
@@ -25,13 +26,18 @@ final class LowerRuleTest extends TestCase
      * @test
      * @covers \Simplex\Validation\LowerRule
      */
-    public function does_not_throw_exception_when_value_is_equal_to_maximum()
+    public function throw_exception_when_value_is_equal_to_maximum()
     {
         $rule = new LowerRule(10);
 
-        $rule->validate(10);
+        $catched = false;
+        try {
+            $rule->validate(10);
+        } catch (BigNumberException $e) {
+            $catched = true;
+        }
 
-        $this->assertTrue(true);
+        $this->assertTrue($catched, 'Equal value with maximum not allowed.');
     }
 
     /**
@@ -68,5 +74,18 @@ final class LowerRuleTest extends TestCase
         }
 
         $this->assertTrue($catched, 'None number value not allowed.');
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\lowerThan
+     */
+    public function helper_get_lower_than_rule()
+    {
+        $rule = lowerThan(10);
+
+        $rule->validate(5);
+
+        $this->assertInstanceOf(LowerRule::class, $rule);
     }
 }

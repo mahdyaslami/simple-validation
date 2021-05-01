@@ -2,9 +2,7 @@
 
 namespace Tests\Validation;
 
-use PHPUnit\Framework\TestCase;
-use Tests\Validation\Helpers\EmtpyRule;
-use Tests\Validation\Helpers\ErrorRule;
+use Simplex\Validation\Exceptions\ValidationException;
 use Tests\Validation\Helpers\TestCompositeRule;
 
 final class CompositeValidatorTest extends TestCase
@@ -15,13 +13,12 @@ final class CompositeValidatorTest extends TestCase
      */
     public function check_first_child_rule_of_array()
     {
-        $rule = new TestCompositeRule([new ErrorRule(), new EmtpyRule()]);
+        $rule = $this->compositeRule([$this->throwExpRule(), $this->rawMockedRule()]);
 
         $catched = false;
         try {
             $rule->validate(0);
-        } catch (\Exception $e) {
-            $this->assertEquals('Error.', $e->getMessage());
+        } catch (ValidationException $e) {
             $catched = true;
         }
 
@@ -34,13 +31,12 @@ final class CompositeValidatorTest extends TestCase
      */
     public function check_second_child_rule_of_array()
     {
-        $rule = new TestCompositeRule([new EmtpyRule(), new ErrorRule()]);
+        $rule = $this->compositeRule([$this->receiveValidateRule(), $this->throwExpRule()]);
 
         $catched = false;
         try {
             $rule->validate(0);
-        } catch (\Exception $e) {
-            $this->assertEquals('Error.', $e->getMessage());
+        } catch (ValidationException $e) {
             $catched = true;
         }
 
@@ -53,7 +49,7 @@ final class CompositeValidatorTest extends TestCase
      */
     public function all_children_rule_of_array()
     {
-        $rule = new TestCompositeRule([new EmtpyRule(), new EmtpyRule()]);
+        $rule = $this->compositeRule([$this->receiveValidateRule(), $this->receiveValidateRule()]);
 
         $catched = false;
         try {
