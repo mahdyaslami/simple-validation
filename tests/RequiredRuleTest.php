@@ -6,6 +6,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Simplex\Validation\Contracts\ValidatorInterface;
 use Simplex\Validation\Exceptions\KeyNotFoundException;
+use Simplex\Validation\Exceptions\ValidationException;
 use Simplex\Validation\RequiredRule;
 use function Simplex\Validation\required;
 use stdClass;
@@ -59,6 +60,41 @@ final class RequiredRuleTest extends TestCase
         $rule->validate($object);
 
         $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\RequiredRule
+     */
+    public function accept_null_when_is_nullable()
+    {
+        $rule = new RequiredRule('id')->nullable();
+
+        $rule->validate([
+            'id' => null
+        ]);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @covers \Simplex\Validation\RequiredRule
+     */
+    public function does_not_accept_null_when_is_nullable()
+    {
+        $rule = new RequiredRule('id');
+
+        $catched = false;
+        try {
+            $rule->validate([
+                'id' => null
+            ]);
+        } catch (ValidationException $e) {
+            $catched = true;
+        }
+
+        $this->assertFalse($catched);
     }
 
     /**
