@@ -8,6 +8,8 @@ abstract class KeyValueValidator extends CompositeValidator
 {
     protected $key;
 
+    protected $nullable = false;
+
     /**
      * Create instance of KeyValudValidator.
      * 
@@ -21,6 +23,27 @@ abstract class KeyValueValidator extends CompositeValidator
         $this->key = $key;
 
         $this->addMany($rules);
+    }
+
+    /**
+     * Set to be nullable or not.
+     * 
+     * @param bool $value
+     * @return void
+     */
+    public function nullable($value = true)
+    {
+        $this->nullable($value);
+    }
+
+    /**
+     * Show null is accepted or not.
+     * 
+     * @return bool
+     */
+    public function isNullable()
+    {
+        return $this->nullable;
     }
 
     /**
