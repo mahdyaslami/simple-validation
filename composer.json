@@ -14,15 +14,15 @@
     "autoload": {
         "psr-4": {
             "Simplex\\Validation\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\Validation\\": "tests/"
         },
         "files": [
             "src/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Validation\\": "tests/"
+        }
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --colors=always",
