@@ -1,6 +1,6 @@
 # Simple Validation
 
-This package provide validation array, object and etc.
+This package provide validation for array, object and etc.
 
 I have use compsite pattern to writing this package.
 
@@ -27,7 +27,7 @@ Call validate method throw `ValidationException` on errors and do nothing on cor
 ```php
 <?php
 
-$validator = objectWith([
+$validator = objectOf([
     required('id', [integer(), lowerThan(5)]),
     sometimes('data', arrayOf([
         integer()
@@ -37,22 +37,41 @@ $validator = objectWith([
 
 ## How can create my own rule
 
-Extend a contract and implement `validate` method.
+Extend one of the contracts and implement `validate` method.
 
-if you extend `CompositeValidator` or you should call `validateChildren` method in `validate` method too.
+if you extend `CompositeValidator`, you should call `validateChildren` method in `validate` method too.
 
 you can override `validateChildren` too.
 
-## Validators
+## Available Validators
 
-```
-arrayOf, objectOf, 
-```
+- #### `objectOf($arrayOfKeyValueValidator)`
 
-```
-required, sometimes, 
-```
+Call array of key value validators on requested object.
 
-```
-integer, numeric, lowerThan
-```
+- #### `arrayOf($arrayOfValidator)`
+
+Call array of validator on all array items.
+
+- #### `integer()`
+
+Check if requested value is integer.
+
+- #### `numeric()`
+
+Check if requested value is number.
+
+- #### `lowerThan($min)`
+
+Check if requested value is lower than `$min`.
+
+### **Key Value validators**
+
+- #### `required($key, $arrayOfValidators)`
+
+Check requested object should has `$key` key and call array of validators on its value.
+
+- #### `sometimes($key, $arrayOfValidators)`
+
+Check of requested object has `$key` key then call
+array of validators on its value.
